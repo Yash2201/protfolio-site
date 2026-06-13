@@ -34,6 +34,16 @@ section{padding:96px 0;position:relative}
 .sec-divider{width:36px;height:3px;background:var(--amber);border-radius:2px;margin:18px 0 48px}
 #hero{min-height:100vh;display:flex;align-items:center;padding-top:62px}
 .hero-inner{max-width:1100px;margin:0 auto;padding:80px 32px;display:grid;grid-template-columns:1fr 320px;gap:64px;align-items:center;width:100%}
+.hero-inner.hero-center{grid-template-columns:1fr;max-width:760px;text-align:center}
+.hero-inner.hero-center .eyebrow{justify-content:center}
+.hero-inner.hero-center .hero-desc{margin-left:auto;margin-right:auto}
+.hero-inner.hero-center .hero-actions{justify-content:center}
+.hero-inner.hero-center .hero-stats{justify-content:center}
+.container.hero-center{padding-top:80px;padding-bottom:80px;text-align:center}
+.container.hero-center .eyebrow{justify-content:center}
+.container.hero-center .hero-desc{margin-left:auto;margin-right:auto}
+.container.hero-center .hero-actions{justify-content:center}
+.container.hero-center .hero-stats{justify-content:center}
 .eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:28px}
 .eyebrow-dot{width:8px;height:8px;border-radius:50%;background:var(--amber);animation:glow 2s ease-in-out infinite}
 @keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(245,166,35,.5)}50%{box-shadow:0 0 0 7px rgba(245,166,35,0)}}
