@@ -1,3 +1,5 @@
+type SkillChip = [string, boolean];
+
 export const EXPERIENCE = [
   {
     id: "success",
@@ -102,7 +104,10 @@ export const PROJECTS = [
   },
 ];
 
-export const SKILLS = [
+export const SKILLS: {
+  label: string;
+  chips: SkillChip[];
+}[] = [
   { label: "Frontend", chips: [["React.js", true], ["Next.js", true], ["TypeScript", true], ["Redux", false], ["Tailwind CSS", false], ["Material UI", false], ["Formik", false]] },
   { label: "Backend", chips: [["Node.js", true], ["Express.js", true], ["Laravel", true], ["REST API", false], ["GraphQL", false], ["PHP", false]] },
   { label: "Databases", chips: [["MongoDB", true], ["MySQL", true], ["PostgreSQL", false], ["Mongoose", false], ["Eloquent ORM", false]] },
