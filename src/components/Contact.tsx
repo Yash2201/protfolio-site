@@ -29,11 +29,11 @@ export default function Contact() {
                   <div className="c-link-val">yashjoshi2201@gmail.com</div>
                 </div>
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="c-link">
+              <a href="https://www.linkedin.com/in/yash-joshi-b12712196/" target="_blank" rel="noopener noreferrer" className="c-link">
                 <div className="c-link-ico">💼</div>
                 <div>
                   <div className="c-link-lbl">LinkedIn</div>
-                  <div className="c-link-val">linkedin.com/in/yashjoshi</div>
+                  <div className="c-link-val">in/yash-joshi-b12712196/</div>
                 </div>
               </a>
             </div>

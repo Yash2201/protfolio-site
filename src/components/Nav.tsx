@@ -30,7 +30,7 @@ export default function Nav({ scrolled, activeSection }: NavProps) {
           <ul className="global-nav-links">
             <li><a href="https://github.com/Yash2201/" target="_blank" rel="noopener noreferrer">GitHub</a></li>
             <li><a href="https://www.linkedin.com/in/yash-joshi-b12712196/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-            <li><a href="#" onClick={(e) => e.preventDefault()}>Resume</a></li>
+            <li><a href="https://drive.google.com/file/d/1CtvTU7Nn7-lcZ3CTr0b4ZpN-0zxVg-uL/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Resume</a></li>
           </ul>
         </div>
       </header>

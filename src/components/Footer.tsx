@@ -61,11 +61,11 @@ export default function Footer() {
         {/* Legal foot notes */}
         <div className="footer-bottom">
           <p className="footer-legal">
-            More ways to connect: <a href="mailto:yashjoshi2201@gmail.com" style={{ color: "var(--colors-primary)", textDecoration: "underline" }}>email me</a> or find a <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" style={{ color: "var(--colors-primary)", textDecoration: "underline" }}>LinkedIn contact</a>.
+            More ways to connect: <a href="mailto:yashjoshi2201@gmail.com" style={{ color: "var(--colors-primary)", textDecoration: "underline" }}>email me</a> or find a <a href="https://www.linkedin.com/in/yash-joshi-b12712196/" target="_blank" rel="noopener noreferrer" style={{ color: "var(--colors-primary)", textDecoration: "underline" }}>LinkedIn contact</a>.
           </p>
           <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "12px", borderTop: "1px solid var(--colors-hairline)", paddingTop: "16px" }}>
             <span className="footer-legal" style={{ opacity: 0.8 }}>
-              Copyright &copy; 2026 Yash Joshi. All rights reserved. Built with React and TypeScript in Rajkot, India.
+              Copyright &copy; {new Date().getFullYear()} Yash Joshi. All rights reserved. Built with React and TypeScript in Rajkot, India.
             </span>
             <ul className="footer-legal-links">
               <li><a href="#" onClick={(e) => e.preventDefault()}>Privacy Policy</a></li>
