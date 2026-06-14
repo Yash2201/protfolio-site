@@ -1,4 +1,19 @@
-const scroll = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+const scroll = (id: string) => {
+  const el = document.getElementById(id);
+  if (el) {
+    // Account for both headers height (44px + 52px = 96px)
+    const offset = 96;
+    const bodyRect = document.body.getBoundingClientRect().top;
+    const elementRect = el.getBoundingClientRect().top;
+    const elementPosition = elementRect - bodyRect;
+    const offsetPosition = elementPosition - offset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth"
+    });
+  }
+};
 
 interface NavProps {
   scrolled: boolean;
@@ -7,20 +22,42 @@ interface NavProps {
 
 export default function Nav({ scrolled, activeSection }: NavProps) {
   return (
-    <nav className={scrolled ? "scrolled" : ""}>
-      <div className="nav-inner">
-        <span className="nav-logo" onClick={() => scroll("hero")}>YJ<span>.</span></span>
-        <ul className="nav-links">
-          {["about", "experience", "projects"].map(id => (
-            <li key={id}>
-              <a className={activeSection === id ? "active" : ""} onClick={() => scroll(id)}>
-                {id.charAt(0).toUpperCase() + id.slice(1)}
+    <>
+      {/* Global Top Nav */}
+      <header className="global-nav">
+        <div className="global-nav-inner">
+          <span className="global-nav-logo" onClick={() => scroll("hero")}>YJ</span>
+          <ul className="global-nav-links">
+            <li><a href="https://github.com/Yash2201/" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/yash-joshi-b12712196/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            <li><a href="#" onClick={(e) => e.preventDefault()}>Resume</a></li>
+          </ul>
+        </div>
+      </header>
+
+      {/* Sub Nav Frosted */}
+      <nav className={`sub-nav-frosted${scrolled ? " scrolled" : ""}`}>
+        <div className="sub-nav-inner">
+          <span className="sub-nav-title" onClick={() => scroll("hero")}>Yash Joshi</span>
+          <ul className="sub-nav-links">
+            {["about", "experience", "projects"].map(id => (
+              <li key={id}>
+                <a
+                  className={activeSection === id ? "active" : ""}
+                  onClick={() => scroll(id)}
+                >
+                  {id.charAt(0).toUpperCase() + id.slice(1)}
+                </a>
+              </li>
+            ))}
+            <li>
+              <a className="sub-nav-cta" onClick={() => scroll("contact")}>
+                Contact
               </a>
             </li>
-          ))}
-          <li><a className="nav-cta" onClick={() => scroll("contact")}>Let's Talk</a></li>
-        </ul>
-      </div>
-    </nav>
+          </ul>
+        </div>
+      </nav>
+    </>
   );
 }

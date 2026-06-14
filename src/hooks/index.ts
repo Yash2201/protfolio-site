@@ -1,4 +1,5 @@
-import { useEffect, useState, RefObject } from "react";
+import { useEffect, useState } from "react";
+import type { RefObject } from "react";
 
 export function useParticles(canvasRef: RefObject<HTMLCanvasElement | null>) {
   useEffect(() => {
@@ -30,7 +31,7 @@ export function useParticles(canvasRef: RefObject<HTMLCanvasElement | null>) {
         const glow = dist < 120 ? 1 - dist / 120 : 0;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r + glow * .8, 0, Math.PI * 2);
-        ctx.fillStyle = glow > 0 ? `rgba(245,166,35,${.3 + glow * .5})` : "rgba(240,237,232,0.18)";
+        ctx.fillStyle = glow > 0 ? `rgba(0,102,204,${.3 + glow * .5})` : "rgba(240,237,232,0.18)";
         ctx.fill();
         p.x += p.vx; p.y += p.vy;
         if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
@@ -42,7 +43,7 @@ export function useParticles(canvasRef: RefObject<HTMLCanvasElement | null>) {
           const d = Math.sqrt(dx * dx + dy * dy);
           if (d < 100) {
             ctx.beginPath(); ctx.moveTo(pts[i].x, pts[i].y); ctx.lineTo(pts[j].x, pts[j].y);
-            ctx.strokeStyle = `rgba(245,166,35,${.06 * (1 - d / 100)})`; ctx.lineWidth = .6; ctx.stroke();
+            ctx.strokeStyle = `rgba(0,102,204,${.06 * (1 - d / 100)})`; ctx.lineWidth = .6; ctx.stroke();
           }
         }
       }

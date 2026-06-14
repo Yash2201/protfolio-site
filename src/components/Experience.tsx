@@ -5,13 +5,13 @@ export default function Experience() {
   const [open, setOpen] = useState("success");
 
   return (
-    <section id="experience">
+    <section id="experience" className="tile-parchment">
       <div className="container">
-        <div className="reveal">
-          <p className="sec-label">Experience</p>
-          <h2 className="sec-title">Where I've worked</h2>
-          <div className="sec-divider" />
+        <div className="tile-header-stack reveal">
+          <p className="tile-label">Experience</p>
+          <h2 className="tile-headline">Where I've worked</h2>
         </div>
+        
         <div className="exp-list reveal reveal-d1">
           {EXPERIENCE.map(e => (
             <div key={e.id} className={`exp-card${open === e.id ? " open" : ""}`}>
@@ -29,9 +29,13 @@ export default function Experience() {
                 </div>
                 <span className="exp-arrow">▶</span>
               </div>
-              <div className="exp-body" style={{ maxHeight: open === e.id ? "400px" : "0" }}>
+              <div className="exp-body" style={{ maxHeight: open === e.id ? "600px" : "0" }}>
                 <div className="exp-body-inner">
-                  <ul>{e.points.map((pt, i) => <li key={i}>{pt}</li>)}</ul>
+                  <ul>
+                    {e.points.map((pt, i) => (
+                      <li key={i}>{pt}</li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </div>
