@@ -34,7 +34,7 @@ export default function Footer() {
             <h3 className="footer-directory-col-title">Connect</h3>
             <ul className="footer-directory-col-links">
               <li><a href="https://github.com/Yash2201/" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-              <li><a href="https://www.linkedin.com/in/yash-joshi-b12712196/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+              <li><a href="https://www.linkedin.com/in/joshi-yas" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
               <li><a href="mailto:yashjoshi2201@gmail.com">Email</a></li>
             </ul>
           </div>
@@ -61,7 +61,7 @@ export default function Footer() {
         {/* Legal foot notes */}
         <div className="footer-bottom">
           <p className="footer-legal">
-            More ways to connect: <a href="mailto:yashjoshi2201@gmail.com" style={{ color: "var(--colors-primary)", textDecoration: "underline" }}>email me</a> or find a <a href="https://www.linkedin.com/in/yash-joshi-b12712196/" target="_blank" rel="noopener noreferrer" style={{ color: "var(--colors-primary)", textDecoration: "underline" }}>LinkedIn contact</a>.
+            More ways to connect: <a href="mailto:yashjoshi2201@gmail.com" style={{ color: "var(--colors-primary)", textDecoration: "underline" }}>email me</a> or find a <a href="https://www.linkedin.com/in/joshi-yas" target="_blank" rel="noopener noreferrer" style={{ color: "var(--colors-primary)", textDecoration: "underline" }}>LinkedIn contact</a>.
           </p>
           <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "12px", borderTop: "1px solid var(--colors-hairline)", paddingTop: "16px" }}>
             <span className="footer-legal" style={{ opacity: 0.8 }}>

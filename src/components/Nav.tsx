@@ -29,7 +29,7 @@ export default function Nav({ scrolled, activeSection }: NavProps) {
           <span className="global-nav-logo" onClick={() => scroll("hero")}>YJ</span>
           <ul className="global-nav-links">
             <li><a href="https://github.com/Yash2201/" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-            <li><a href="https://www.linkedin.com/in/yash-joshi-b12712196/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            <li><a href="https://www.linkedin.com/in/joshi-yas" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
             <li><a href="https://drive.google.com/file/d/1ftjeK5du10iuMKVTSbUIwazPHfnjV2ZU/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Resume</a></li>
           </ul>
         </div>
