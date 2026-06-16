@@ -1,4 +1,38 @@
 import { useTypewriter, useCounter } from "../hooks";
+import { STATS } from "../data";
+
+// Decorative "shipping activity" heatmap — a GitHub-style grid built once at module load.
+// 5 intensity levels (0 = idle … 4 = busy) come from a stable hash, so the pattern is
+// identical on every load (no per-render flicker). Cells are tints of the single accent.
+const HEAT_COLS = 30;
+const HEAT_ROWS = 7;
+const HEATMAP = Array.from({ length: HEAT_COLS * HEAT_ROWS }, (_, i) => {
+  const h = Math.sin(i * 12.9898) * 43758.5453;
+  const f = h - Math.floor(h); // deterministic pseudo-random in [0, 1)
+  if (f < 0.45) return 0;
+  if (f < 0.66) return 1;
+  if (f < 0.83) return 2;
+  if (f < 0.94) return 3;
+  return 4;
+});
+
+interface StatItemProps {
+  value: number;
+  suffix: string;
+  label: string;
+  started: boolean;
+}
+
+// Module-level so it isn't re-created on every Hero render (rerender-no-inline-components).
+function StatItem({ value, suffix, label, started }: StatItemProps) {
+  const count = useCounter(value, started);
+  return (
+    <div style={{ textAlign: "left" }}>
+      <div className="stat-val">{count}{suffix}</div>
+      <div className="stat-lbl">{label}</div>
+    </div>
+  );
+}
 
 const scroll = (id: string) => {
   const el = document.getElementById(id);
@@ -22,9 +56,6 @@ interface HeroProps {
 
 export default function Hero({ countersStarted }: HeroProps) {
   const { display, showCursor } = useTypewriter(["Joshi.", "Full Stack Dev.", "Problem Solver.", "Joshi."]);
-  const c1 = useCounter(4.5, countersStarted);
-  const c2 = useCounter(6, countersStarted);
-  const c3 = useCounter(3, countersStarted);
 
   return (
     <section id="hero" className="tile-light">
@@ -52,40 +83,30 @@ export default function Hero({ countersStarted }: HeroProps) {
               <div className="chrome-address-bar" />
             </div>
             <div className="browser-content" style={{ display: "flex", flexDirection: "row", padding: 0, height: "100%", width: "100%", background: "#ffffff" }}>
-              {/* Sidebar */}
-              <div style={{ width: "60px", background: "#f5f5f7", borderRight: "1px solid #e0e0e0", display: "flex", flexDirection: "column", gap: "12px", padding: "16px 0", alignItems: "center" }}>
-                <div style={{ width: "24px", height: "24px", borderRadius: "50%", background: "#0066cc", opacity: 0.15 }} />
-                <div style={{ width: "24px", height: "12px", borderRadius: "4px", background: "#e0e0e0" }} />
-                <div style={{ width: "24px", height: "12px", borderRadius: "4px", background: "#e0e0e0" }} />
-                <div style={{ width: "24px", height: "12px", borderRadius: "4px", background: "#e0e0e0" }} />
-              </div>
               {/* Main Board */}
-              <div style={{ flexGrow: 1, padding: "24px", display: "flex", flexDirection: "column", justifyContent: "center", gap: "24px" }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                  <div style={{ height: "14px", width: "100px", borderRadius: "4px", background: "#f5f5f7" }} />
-                  <div style={{ height: "24px", width: "80px", borderRadius: "12px", background: "#0066cc", opacity: 0.1 }} />
+              <div className="hero-mock-board">
+                <div className="hero-mock-head">
+                  <span className="hero-mock-title">Shipping activity</span>
+                  <span className="hero-mock-status">Open to work</span>
                 </div>
-                <div className="hero-stats" style={{ display: "flex", justifyContent: "space-between", margin: 0, gap: "16px" }}>
-                  <div style={{ textAlign: "left" }}>
-                    <div className="stat-val">{c1}+</div>
-                    <div className="stat-lbl" style={{ textTransform: "uppercase", fontSize: "10px", letterSpacing: "0.05em" }}>Years Experience</div>
-                  </div>
-                  <div style={{ textAlign: "left" }}>
-                    <div className="stat-val">{c2}+</div>
-                    <div className="stat-lbl" style={{ textTransform: "uppercase", fontSize: "10px", letterSpacing: "0.05em" }}>Products Shipped</div>
-                  </div>
-                  <div style={{ textAlign: "left" }}>
-                    <div className="stat-val">{c3}+</div>
-                    <div className="stat-lbl" style={{ textTransform: "uppercase", fontSize: "10px", letterSpacing: "0.05em" }}>Tech Stacks</div>
-                  </div>
+                <div className="hero-stats">
+                  {STATS.map(s => (
+                    <StatItem key={s.label} value={s.value} suffix={s.suffix} label={s.label} started={countersStarted} />
+                  ))}
                 </div>
-                {/* Visual Activity block */}
-                <div style={{ height: "40px", width: "100%", borderRadius: "6px", background: "#f5f5f7", display: "flex", alignItems: "center", padding: "0 12px", justifyContent: "space-between" }}>
-                  <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
-                    <div style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#30d158" }} />
-                    <div style={{ height: "10px", width: "120px", borderRadius: "3px", background: "#e0e0e0" }} />
-                  </div>
-                  <div style={{ height: "8px", width: "40px", borderRadius: "3px", background: "#e0e0e0" }} />
+                <div className="hero-mock-heat" aria-hidden="true">
+                  {HEATMAP.map((lvl, i) => (
+                    <span key={i} className={lvl ? `hero-mock-cell heat-${lvl}` : "hero-mock-cell"} />
+                  ))}
+                </div>
+                <div className="hero-mock-heat-legend" aria-hidden="true">
+                  <span>Less</span>
+                  <span className="hero-mock-cell" />
+                  <span className="hero-mock-cell heat-1" />
+                  <span className="hero-mock-cell heat-2" />
+                  <span className="hero-mock-cell heat-3" />
+                  <span className="hero-mock-cell heat-4" />
+                  <span>More</span>
                 </div>
               </div>
             </div>

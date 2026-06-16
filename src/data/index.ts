@@ -50,6 +50,7 @@ export const PROJECTS = [
     id: "email-platform",
     icon: "✉️",
     name: "AI-Powered Email Deliverability & Outreach Platform",
+    short: "Email Platform",
     period: "Aug 2024 – Mar 2026",
     desc: "The core product at Success.ai — a full white-label SaaS for branded cold email outreach with AI writing tools, deliverability infrastructure, and third-party integrations.",
     points: [
@@ -66,6 +67,7 @@ export const PROJECTS = [
     id: "dzitra",
     icon: "🧩",
     name: "Dzitra — No-Code App Builder",
+    short: "Dzitra",
     period: "Apr – Oct 2023",
     desc: "Drag-and-drop platform for building dynamic web apps without writing code. Custom rendering engine, reusable components, SSR optimization.",
     points: [
@@ -79,6 +81,7 @@ export const PROJECTS = [
     id: "telagr",
     icon: "🌾",
     name: "Telagr — Real-Time Comms Platform",
+    short: "Telagr",
     period: "Oct 2023 – Jun 2024",
     desc: "Real-time communication system connecting farmers with specialists. Role-based workflows, session management, live chat.",
     points: [
@@ -92,6 +95,7 @@ export const PROJECTS = [
     id: "edification",
     icon: "🎓",
     name: "Edification — EdTech Platform",
+    short: "Edification",
     period: "May 2022 – Apr 2023",
     desc: "Educational management system with live GPS bus tracking, route visualization, and dynamic CRUD management for school operations.",
     points: [
@@ -112,4 +116,12 @@ export const SKILLS: {
   { label: "Backend", chips: [["Node.js", true], ["Express.js", true], ["Laravel", true], ["REST API", false], ["GraphQL", false], ["PHP", false]] },
   { label: "Databases", chips: [["MongoDB", true], ["MySQL", true], ["PostgreSQL", false], ["Mongoose", false], ["Eloquent ORM", false]] },
   { label: "Cloud & Tools", chips: [["AWS S3", false], ["Docker", false], ["Git", false], ["Pusher", false], ["Zapier", false], ["HubSpot", false], ["Postman", false]] },
+];
+
+// Hero stat row — single source of truth, values sourced from the resume.
+// Kept at 3 items per the design constraint (3–4 max to avoid layout crowding).
+export const STATS: { value: number; suffix: string; label: string }[] = [
+  { value: 4.5, suffix: "+", label: "Years Experience" }, // resume summary: "4.5+ years"
+  { value: 6, suffix: "+", label: "Projects Shipped" },   // resume PROJECTS section: 6 builds
+  { value: 28, suffix: "+", label: "Technologies" },      // resume TECHNICAL SKILLS: ~28 named techs
 ];

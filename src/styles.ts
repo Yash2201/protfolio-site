@@ -592,9 +592,9 @@ section {
 }
 .hero-stats {
   display: flex;
-  gap: var(--spacing-xxl);
-  justify-content: center;
-  margin-top: var(--spacing-xl);
+  gap: var(--spacing-md);
+  justify-content: space-between;
+  margin: 0;
 }
 .stat-val {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
@@ -604,9 +604,79 @@ section {
   letter-spacing: -0.02em;
 }
 .stat-lbl {
-  font-size: 12px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   color: var(--colors-ink-muted-48);
   margin-top: 2px;
+}
+.hero-mock-board {
+  flex-grow: 1;
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--spacing-lg);
+}
+.hero-mock-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.hero-mock-title {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--colors-ink);
+}
+.hero-mock-status {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: 10px;
+  color: var(--colors-ink-muted-48);
+}
+.hero-mock-status::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: var(--rounded-full);
+  background-color: #30d158;
+}
+.hero-mock-heat {
+  display: grid;
+  grid-template-columns: repeat(30, 1fr);
+  gap: var(--spacing-xxs);
+}
+.hero-mock-cell {
+  aspect-ratio: 1;
+  border-radius: var(--rounded-xs);
+  background-color: var(--colors-divider-soft);
+}
+.hero-mock-cell.heat-1 {
+  background-color: color-mix(in srgb, var(--colors-primary) 18%, transparent);
+}
+.hero-mock-cell.heat-2 {
+  background-color: color-mix(in srgb, var(--colors-primary) 40%, transparent);
+}
+.hero-mock-cell.heat-3 {
+  background-color: color-mix(in srgb, var(--colors-primary) 65%, transparent);
+}
+.hero-mock-cell.heat-4 {
+  background-color: color-mix(in srgb, var(--colors-primary) 90%, transparent);
+}
+.hero-mock-heat-legend {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--spacing-xxs);
+  font-size: 10px;
+  color: var(--colors-ink-muted-48);
+}
+.hero-mock-heat-legend .hero-mock-cell {
+  width: 11px;
+  height: 11px;
+  aspect-ratio: auto;
 }
 
 /* About */
@@ -1184,7 +1254,10 @@ section {
     font-size: 21px;
   }
   .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--spacing-lg);
+    justify-items: start;
   }
   .footer-directory {
     grid-template-columns: 1fr;
