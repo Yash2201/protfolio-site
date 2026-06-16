@@ -1,12 +1,81 @@
-import { useState } from "react";
+import { useState } from 'react';
+
+type Status = 'idle' | 'sending' | 'success' | 'error';
+
+type FormValues = {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+};
+
+type FormErrors = Partial<Record<keyof FormValues, string>>;
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const initialValues: FormValues = { name: '', email: '', subject: '', message: '' };
 
 export default function Contact() {
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<Status>('idle');
+  const [values, setValues] = useState<FormValues>(initialValues);
+  const [errors, setErrors] = useState<FormErrors>({});
 
-  const handleSend = () => {
-    setSent(true);
-    setTimeout(() => setSent(false), 3000);
+  const validate = (vals: FormValues): FormErrors => {
+    const next: FormErrors = {};
+    if (!vals.name.trim()) next.name = 'Please enter your name.';
+    if (!vals.email.trim()) next.email = 'Please enter your email.';
+    else if (!EMAIL_RE.test(vals.email.trim())) next.email = 'Please enter a valid email address.';
+    if (!vals.subject.trim()) next.subject = 'Please add a subject.';
+    if (!vals.message.trim()) next.message = 'Please write a message.';
+    else if (vals.message.trim().length < 10) next.message = 'Your message is a little short (min 10 characters).';
+    return next;
   };
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setValues((prev) => ({ ...prev, [name]: value }));
+    // Clear a field's error as soon as the user starts correcting it.
+    setErrors((prev) => (prev[name as keyof FormValues] ? { ...prev, [name]: undefined } : prev));
+    if (status === 'error') setStatus('idle');
+  };
+
+  const handleSend = async () => {
+    if (status === 'sending') return;
+
+    const validationErrors = validate(values);
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+    setErrors({});
+    setStatus('sending');
+    const GOOGLE_SCRIPT_WEB_APP_URL = import.meta.env.VITE_GOOGLE_SCRIPT_WEB_APP_URL;
+
+    const formData = new FormData();
+    (Object.keys(values) as (keyof FormValues)[]).forEach((key) => {
+      formData.append(key, values[key].trim());
+    });
+
+    try {
+      await fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
+        method: "POST",
+        body: formData,
+        mode: "no-cors"
+      });
+      // With mode: "no-cors" the response is opaque, so a resolved fetch
+      // means the request went through. Treat that as success.
+      setStatus('success');
+      setValues(initialValues);
+    } catch (error) {
+      console.error("Error sending form:", error);
+      setStatus('error');
+    }
+  };
+
+  const sending = status === 'sending';
+  const success = status === 'success';
 
   return (
     <section id="contact" className="tile-light">
@@ -45,28 +114,79 @@ export default function Contact() {
             <div className="form">
               <div className="form-row-2">
                 <div className="form-field">
-                  <label className="form-label">Name</label>
-                  <input type="text" className="form-input" placeholder="Your name" />
+                  <label className="form-label" htmlFor="contact-name">Name</label>
+                  <input
+                    id="contact-name"
+                    type="text"
+                    name="name"
+                    className={`form-input${errors.name ? " invalid" : ""}`}
+                    placeholder="Your name"
+                    value={values.name}
+                    onChange={handleChange}
+                    aria-invalid={errors.name ? true : undefined}
+                  />
+                  {errors.name && <span className="form-error" role="alert">{errors.name}</span>}
                 </div>
                 <div className="form-field">
-                  <label className="form-label">Email</label>
-                  <input type="email" className="form-input" placeholder="you@company.com" />
+                  <label className="form-label" htmlFor="contact-email">Email</label>
+                  <input
+                    id="contact-email"
+                    type="email"
+                    name="email"
+                    className={`form-input${errors.email ? " invalid" : ""}`}
+                    placeholder="you@company.com"
+                    value={values.email}
+                    onChange={handleChange}
+                    aria-invalid={errors.email ? true : undefined}
+                  />
+                  {errors.email && <span className="form-error" role="alert">{errors.email}</span>}
                 </div>
               </div>
               <div className="form-field">
-                <label className="form-label">Subject</label>
-                <input type="text" className="form-input" placeholder="Project, role, collaboration..." />
+                <label className="form-label" htmlFor="contact-subject">Subject</label>
+                <input
+                  id="contact-subject"
+                  type="text"
+                  name="subject"
+                  className={`form-input${errors.subject ? " invalid" : ""}`}
+                  placeholder="Project, role, collaboration..."
+                  value={values.subject}
+                  onChange={handleChange}
+                  aria-invalid={errors.subject ? true : undefined}
+                />
+                {errors.subject && <span className="form-error" role="alert">{errors.subject}</span>}
               </div>
               <div className="form-field">
-                <label className="form-label">Message</label>
-                <textarea className="form-textarea" placeholder="Tell me a bit about what you're working on..." />
+                <label className="form-label" htmlFor="contact-message">Message</label>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  className={`form-textarea${errors.message ? " invalid" : ""}`}
+                  placeholder="Tell me a bit about what you're working on..."
+                  value={values.message}
+                  onChange={handleChange}
+                  aria-invalid={errors.message ? true : undefined}
+                />
+                {errors.message && <span className="form-error" role="alert">{errors.message}</span>}
               </div>
-              <button 
-                className={`form-btn${sent ? " sent" : ""}`} 
+              <button
+                className={`form-btn${success ? " sent" : ""}`}
                 onClick={handleSend}
+                disabled={sending || success}
               >
-                {sent ? "Message Sent ✓" : "Send Message"}
+                {sending && <span className="form-spinner" aria-hidden="true" />}
+                {sending ? "Sending..." : success ? "Message Sent ✓" : "Send Message"}
               </button>
+              {success && (
+                <p className="form-status form-status-success" role="status">
+                  Thanks! Your message has been sent — I'll get back to you soon.
+                </p>
+              )}
+              {status === 'error' && (
+                <p className="form-status form-status-error" role="alert">
+                  Something went wrong while sending. Please try again, or email me directly.
+                </p>
+              )}
             </div>
           </div>
         </div>

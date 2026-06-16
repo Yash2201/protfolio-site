@@ -1107,6 +1107,13 @@ section {
 .form-input:focus, .form-textarea:focus {
   border-color: var(--colors-primary);
 }
+.form-input.invalid, .form-textarea.invalid {
+  border-color: #d12f2f;
+}
+.form-error {
+  font-size: 12px;
+  color: #d12f2f;
+}
 .form-input::placeholder, .form-textarea::placeholder {
   color: var(--colors-ink-muted-48);
 }
@@ -1127,6 +1134,34 @@ section {
 }
 .form-btn.sent {
   background-color: #30d158; /* Apple green */
+}
+.form-btn:disabled {
+  cursor: default;
+}
+.form-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-right: 8px;
+  vertical-align: -2px;
+  border: 2px solid var(--colors-body-on-dark);
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: form-spin 0.7s linear infinite;
+}
+@keyframes form-spin {
+  to { transform: rotate(360deg); }
+}
+.form-status {
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+}
+.form-status-success {
+  color: #1a8a3a;
+}
+.form-status-error {
+  color: #d12f2f;
 }
 
 /* Footer styling matching Apple dense stack */
