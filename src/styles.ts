@@ -826,12 +826,15 @@ section {
   font-size: 18px;
   flex-shrink: 0;
 }
-/* Logo images sit on a white chip so light-background marks read cleanly
-   on both the parchment and dark tiles. */
-.exp-ico:has(.ico-img),
-.p-ico:has(.ico-img) {
+/* Experience cards sit on the light parchment tile, so logos get a white chip
+   to read cleanly. Project cards keep their dark chip (matching the emoji
+   cards like Dzitra) so the logos sit on a dark background. */
+.exp-ico:has(.ico-img) {
   background-color: #ffffff;
   border-color: var(--colors-hairline);
+  padding: 4px;
+}
+.p-ico:has(.ico-img) {
   padding: 4px;
 }
 .ico-img {
