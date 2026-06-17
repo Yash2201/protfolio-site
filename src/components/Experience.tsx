@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { EXPERIENCE } from "../data";
+import { Icon } from "./Icon";
 
 export default function Experience() {
   const [open, setOpen] = useState("success");
@@ -17,7 +18,7 @@ export default function Experience() {
             <div key={e.id} className={`exp-card${open === e.id ? " open" : ""}`}>
               <div className="exp-head" onClick={() => setOpen(open === e.id ? "" : e.id)}>
                 <div className="exp-head-left">
-                  <div className="exp-ico">{e.icon}</div>
+                  <div className="exp-ico"><Icon icon={e.icon} alt={e.company} /></div>
                   <div>
                     <div className="exp-co">{e.company}</div>
                     <div className="exp-role-txt">{e.role}</div>

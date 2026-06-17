@@ -1,4 +1,5 @@
 import { PROJECTS } from "../data";
+import { Icon } from "./Icon";
 
 export default function Projects() {
   const featured = PROJECTS.find(p => p.featured)!;
@@ -18,7 +19,7 @@ export default function Projects() {
           <div className="p-card featured reveal">
             <div>
               <div className="p-head">
-                <div className="p-ico">{featured.icon}</div>
+                <div className="p-ico"><Icon icon={featured.icon} alt={featured.name} /></div>
                 <div className="p-period">{featured.period}</div>
               </div>
               <div className="p-name" style={{ marginTop: 16 }}>{featured.name}</div>
@@ -47,7 +48,7 @@ export default function Projects() {
           {regular.map((p, i) => (
             <div key={p.id} className={`p-card reveal reveal-d${i + 1}`}>
               <div className="p-head">
-                <div className="p-ico">{p.icon}</div>
+                <div className="p-ico"><Icon icon={p.icon} alt={p.name} /></div>
                 <div className="p-period">{p.period}</div>
               </div>
               <div className="p-name" style={{ marginTop: 8 }}>{p.name}</div>
@@ -76,7 +77,7 @@ export default function Projects() {
               <div className="wide-inner">
                 <div>
                   <div className="p-head">
-                    <div className="p-ico">{wide.icon}</div>
+                    <div className="p-ico"><Icon icon={wide.icon} alt={wide.name} /></div>
                     <div className="p-period">{wide.period}</div>
                   </div>
                   <div className="p-name" style={{ marginTop: 16 }}>{wide.name}</div>

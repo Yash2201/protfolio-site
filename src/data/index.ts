@@ -3,7 +3,7 @@ type SkillChip = [string, boolean];
 export const EXPERIENCE = [
   {
     id: "success",
-    icon: "✉️",
+    icon: "/logos/success-ai.png",
     company: "Success.ai",
     role: "Full Stack Developer",
     period: "Aug 2024 – Mar 2026",
@@ -18,7 +18,7 @@ export const EXPERIENCE = [
   },
   {
     id: "tmedia",
-    icon: "📡",
+    icon: "/logos/tmedia.png",
     company: "Tmedia Business Solution",
     role: "Full Stack Developer",
     period: "May 2022 – May 2024",
@@ -32,7 +32,7 @@ export const EXPERIENCE = [
   },
   {
     id: "geetaxmi",
-    icon: "⚙️",
+    icon: "/logos/geetaxmi.png",
     company: "Geetaxmi Technologies",
     role: "Jr. Software Developer",
     period: "Feb 2021 – Mar 2022",
@@ -48,7 +48,7 @@ export const EXPERIENCE = [
 export const PROJECTS = [
   {
     id: "email-platform",
-    icon: "✉️",
+    icon: "/logos/success-ai.png",
     name: "AI-Powered Email Deliverability & Outreach Platform",
     short: "Email Platform",
     period: "Aug 2024 – Mar 2026",
@@ -78,10 +78,10 @@ export const PROJECTS = [
     tags: ["Next.js", "Node.js", "TypeScript", "PostgreSQL"],
   },
   {
-    id: "telagr",
-    icon: "🌾",
-    name: "Telagr — Real-Time Comms Platform",
-    short: "Telagr",
+    id: "telagri",
+    icon: "/logos/telagri.png",
+    name: "Telagri — Real-Time Comms Platform",
+    short: "Telagri",
     period: "Oct 2023 – Jun 2024",
     desc: "Real-time communication system connecting farmers with specialists. Role-based workflows, session management, live chat.",
     points: [
@@ -93,7 +93,7 @@ export const PROJECTS = [
   },
   {
     id: "edification",
-    icon: "🎓",
+    icon: "/logos/edification.png",
     name: "Edification — EdTech Platform",
     short: "Edification",
     period: "May 2022 – Apr 2023",

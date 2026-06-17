@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { GmailIcon, LinkedInIcon } from './TechIcons';
 
 type Status = 'idle' | 'sending' | 'success' | 'error';
 
@@ -92,17 +93,17 @@ export default function Contact() {
             </p>
             <div className="c-links">
               <a href="mailto:yashjoshi2201@gmail.com" className="c-link">
-                <div className="c-link-ico">✉️</div>
+                <div className="c-link-ico"><GmailIcon size={22} /></div>
                 <div>
                   <div className="c-link-lbl">Email</div>
                   <div className="c-link-val">yashjoshi2201@gmail.com</div>
                 </div>
               </a>
               <a href="https://www.linkedin.com/in/joshi-yas" target="_blank" rel="noopener noreferrer" className="c-link">
-                <div className="c-link-ico">💼</div>
+                <div className="c-link-ico"><LinkedInIcon size={22} /></div>
                 <div>
                   <div className="c-link-lbl">LinkedIn</div>
-                  <div className="c-link-val">in/yash-joshi-b12712196/</div>
+                  <div className="c-link-val">in/joshi-yas/</div>
                 </div>
               </a>
             </div>

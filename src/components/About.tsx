@@ -1,10 +1,49 @@
+import type { ReactNode } from "react";
 import { SKILLS } from "../data";
+import {
+  MongoDBIcon,
+  ExpressIcon,
+  ReactIcon,
+  NodeIcon,
+  LaravelIcon,
+  PHPIcon,
+  RemoteIcon,
+  AgileIcon,
+} from "./TechIcons";
 
-const highlights: [string, string, string][] = [
-  ["⚡", "MERN Stack", "Primary production stack"],
-  ["🧩", "Laravel / PHP", "Backend & API expertise"],
-  ["🚀", "Remote-ready", "3 years remote experience"],
-  ["🛠", "Agile teams", "Cross-functional delivery"],
+const highlights: { icon: ReactNode; title: string; sub: string }[] = [
+  {
+    icon: (
+      <span className="hi-logos">
+        <MongoDBIcon size={20} />
+        <ExpressIcon size={20} />
+        <ReactIcon size={20} />
+        <NodeIcon size={20} />
+      </span>
+    ),
+    title: "MERN Stack",
+    sub: "Primary production stack",
+  },
+  {
+    icon: (
+      <span className="hi-logos">
+        <LaravelIcon size={20} />
+        <PHPIcon size={26} />
+      </span>
+    ),
+    title: "Laravel / PHP",
+    sub: "Backend & API expertise",
+  },
+  {
+    icon: <RemoteIcon size={22} />,
+    title: "Remote-ready",
+    sub: "3 years remote experience",
+  },
+  {
+    icon: <AgileIcon size={22} />,
+    title: "Agile teams",
+    sub: "Cross-functional delivery",
+  },
 ];
 
 export default function About() {
@@ -26,9 +65,9 @@ export default function About() {
             </p>
             
             <div className="highlights">
-              {highlights.map(([ico, title, sub]) => (
+              {highlights.map(({ icon, title, sub }) => (
                 <div className="hi" key={title}>
-                  <div className="hi-ico">{ico}</div>
+                  <div className="hi-ico">{icon}</div>
                   <div className="hi-lbl">
                     <strong>{title}</strong>
                     {sub}

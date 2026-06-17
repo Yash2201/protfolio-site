@@ -714,8 +714,19 @@ section {
   border-color: var(--colors-primary-on-dark);
 }
 .hi-ico {
+  display: flex;
+  align-items: center;
+  min-height: 26px;
   font-size: 18px;
   margin-bottom: var(--spacing-xs);
+}
+.hi-logos {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.hi-ico svg {
+  display: block;
 }
 .hi-lbl {
   font-size: 14px;
@@ -814,6 +825,31 @@ section {
   justify-content: center;
   font-size: 18px;
   flex-shrink: 0;
+}
+/* Logo images sit on a white chip so light-background marks read cleanly
+   on both the parchment and dark tiles. */
+.exp-ico:has(.ico-img),
+.p-ico:has(.ico-img) {
+  background-color: #ffffff;
+  border-color: var(--colors-hairline);
+  padding: 4px;
+}
+.ico-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 4px;
+}
+.ico-fallback {
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+}
+.exp-ico .ico-fallback {
+  color: var(--colors-ink);
+}
+.p-ico .ico-fallback {
+  color: var(--colors-body-on-dark);
 }
 .exp-co {
   font-size: 17px;
@@ -1035,6 +1071,9 @@ section {
   justify-content: center;
   font-size: 16px;
   flex-shrink: 0;
+}
+.c-link-ico svg {
+  display: block;
 }
 .c-link-lbl {
   font-size: 12px;
