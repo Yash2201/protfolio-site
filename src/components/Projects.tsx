@@ -25,9 +25,9 @@ export default function Projects() {
               <div className="p-name" style={{ marginTop: 16 }}>{featured.name}</div>
               <p className="p-desc" style={{ marginTop: 12 }}>{featured.desc}</p>
               <div style={{ marginTop: 20 }}>
-                <span className="text-link-on-dark" style={{ fontSize: "14px" }}>
+                <a href={featured.url} target="_blank" rel="noopener noreferrer"><span className="text-link-on-dark" style={{ fontSize: "14px" }}>
                   Learn more &rarr;
-                </span>
+                </span></a>
               </div>
             </div>
             <div>
@@ -64,9 +64,9 @@ export default function Projects() {
                 ))}
               </div>
               <div style={{ marginTop: "auto" }}>
-                <span className="text-link-on-dark" style={{ fontSize: "14px" }}>
+                <a href={p.url} target="_blank" rel="noopener noreferrer"><span className="text-link-on-dark" style={{ fontSize: "14px" }}>
                   Learn more &rarr;
-                </span>
+                </span></a>
               </div>
             </div>
           ))}
@@ -83,9 +83,9 @@ export default function Projects() {
                   <div className="p-name" style={{ marginTop: 16 }}>{wide.name}</div>
                   <p className="p-desc" style={{ marginTop: 12 }}>{wide.desc}</p>
                   <div style={{ marginTop: 20 }}>
-                    <span className="text-link-on-dark" style={{ fontSize: "14px" }}>
+                    <a href={wide.url} target="_blank" rel="noopener noreferrer"><span className="text-link-on-dark" style={{ fontSize: "14px" }}>
                       Learn more &rarr;
-                    </span>
+                    </span></a>
                   </div>
                 </div>
                 <div>

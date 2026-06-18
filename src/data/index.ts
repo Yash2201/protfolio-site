@@ -62,6 +62,7 @@ export const PROJECTS = [
     ],
     tags: ["React.js", "Node.js", "MongoDB", "Express", "Zapier API", "HubSpot API"],
     featured: true,
+    url: "https://www.success.ai",
   },
   {
     id: "dzitra",
@@ -76,6 +77,7 @@ export const PROJECTS = [
       "SSR optimization and build size reduction",
     ],
     tags: ["Next.js", "Node.js", "TypeScript", "PostgreSQL"],
+    url: "#",
   },
   {
     id: "telagri",
@@ -90,6 +92,7 @@ export const PROJECTS = [
       "Image processing and thumbnail generation pipeline",
     ],
     tags: ["Laravel", "React.js", "Pusher", "PHP"],
+    url: "https://telagri.com/en/",
   },
   {
     id: "edification",
@@ -105,6 +108,7 @@ export const PROJECTS = [
     ],
     tags: ["Laravel", "React.js", "MongoDB", "Google Maps API"],
     wide: true,
+    url: "https://onlineedification.com/"
   },
 ];
 
