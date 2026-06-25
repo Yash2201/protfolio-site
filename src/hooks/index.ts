@@ -7,7 +7,8 @@ export function useParticles(canvasRef: RefObject<HTMLCanvasElement | null>) {
     if (!canvas) return;
     const ctx = canvas.getContext("2d")!;
     let W: number, H: number, pts: { x: number; y: number; vx: number; vy: number; r: number }[] = [];
-    let mouse = { x: -999, y: -999 }, rafId: number;
+    const mouse = { x: -999, y: -999 };
+    let rafId: number;
 
     const resize = () => {
       W = canvas.width = window.innerWidth;

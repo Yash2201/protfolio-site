@@ -51,7 +51,10 @@ export default function Nav({ scrolled, activeSection }: NavProps) {
               </li>
             ))}
             <li>
-              <a className="sub-nav-cta" onClick={() => scroll("contact")}>
+              <a
+                className={`sub-nav-cta${activeSection === "contact" ? " active" : ""}`}
+                onClick={() => scroll("contact")}
+              >
                 Contact
               </a>
             </li>
